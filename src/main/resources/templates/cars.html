@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <form method="post" th:action="@{/cars}">
+        <input type="text" name="name" placeholder="Enter car name" />
+        <input type="number" name="price" placeholder="Enter price">
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<h2>Cars list</h2>
+<!--<table>-->
+<!--    <tr th:each="car : ${cars}">-->
+<!--        <td th:text="${car.id}"> </td>-->
+<!--        <td th:text="${car.name}"> </td>-->
+<!--        <td th:text="${car.price}"> </td>-->
+<!--        <td>-->
+<!--            <form method="post" th:action="@{/cars}">-->
+<!--&lt;!&ndash;                <input type="hidden" th:name="${car.id}">&ndash;&gt;-->
+<!--                <input type="hidden" th:value="${car.id}" name="carId">-->
+<!--                <button type="submit">Удалить</button>-->
+<!--            </form>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+<table>
+    <thead>
+    <tr>
+        <th>Машина</th>
+        <th>Цена</th>
+    </tr>
+    </thead>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.name}"> </td>
+        <td th:text="${car.price}"> </td>
+        <td><a th:href="@{/cars/{id}(id=${car.id})}">Изменить</a></td>
+    </tr>
+</table>
+</body>
+</html>

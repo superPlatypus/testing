@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>Document</title>
+</head>
+<body>
+Изменение пользователей
+<form action="#" th:action="@{/users}" method="post">
+    <p>Логин: <input type="text" th:value="${user.username}" name="username"></p>
+    <p>ID: <input type="text" th:value="${user.id}" name="userId"></p>
+
+<!--    <p>ID: </p><p style="display: inline-block" th:text="${user.id}"></p>-->
+
+    <p th:each="role : ${roles}">
+        <label th:text="${role}"></label>
+        <input type="checkbox" th:checked="${#lists.contains(user.roles, role)}" th:name="${role}">
+    </p>
+    <button type="submit">Сохранить</button>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+  <title>Document</title>
+</head>
+<body>
+Изменение машин
+<form action="#" th:action="@{/cars/{id}/edit(id=${car.id})}" method="post">
+  <p>Название: <input type="text" th:value="${car.name}" name="name"></p>
+  <p>Цена: <input type="text" th:value="${car.price}" name="price"></p>
+  <p>ID: <input type="text" th:value="${car.id}" name="carId"></p>
+
+  <button type="submit">Сохранить</button>
+</form>
+
+<form  action="#" method="post" th:action="@{/cars/{id}/delete(id=${car.id})}">
+    <input type="hidden" th:value="${car.id}" name="carId">
+    <button type="submit">Удалить</button>
+</form>
+
+
+
+</body>
+</html>

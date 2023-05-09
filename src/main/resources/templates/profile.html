@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>Document</title>
+</head>
+<body>
+<h3 th:text="'Профиль ' + ${user.username}"></h3>
+<table border="1" th:if="${not #lists.isEmpty(orders)}">
+    <thead>
+    <tr>
+        <th>ID заказа</th>
+        <th>Машина</th>
+        <th>Начало поездки</th>
+        <th>Конец поездки</th>
+        <th>Cтоимость</th>
+    </tr>
+    </thead>
+    <tr th:each="order: ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.orderedCar.name}"></td>
+        <td th:text="${#temporals.format(order.start, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${#temporals.format(order.finish, 'dd-MM-yyyy HH:mm')}"></td>
+        <td th:text="${order.price}"></td>
+<!--        <td th:text="${order.start}"></td>-->
+<!--        <td th:text="${order.finish}"></td>-->
+
+    </tr>
+</table>
+
+</body>
+</html>
