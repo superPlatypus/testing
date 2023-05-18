@@ -20,6 +20,10 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 
+/**
+ * Класс контроллера аренды автомобиля.
+ * @autor Кирилл Пашовкин
+ */
 @Controller
 @RequestMapping("/order")
 public class OrderController {
