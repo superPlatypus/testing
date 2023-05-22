@@ -10,8 +10,6 @@ import java.util.Set;
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,7 +17,6 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private Set<CarOrder> orders;
@@ -40,11 +37,6 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
-
-
-
-
-
     public Long getId() {
         return id;
     }

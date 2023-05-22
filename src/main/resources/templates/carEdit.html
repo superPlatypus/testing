@@ -12,7 +12,7 @@
 <form action="#" th:action="@{/cars/{id}/edit(id=${car.id})}" method="post">
   <p>Название: <input type="text" th:value="${car.name}" name="name"></p>
   <p>Цена: <input type="text" th:value="${car.price}" name="price"></p>
-  <p>ID: <input type="text" th:value="${car.id}" name="carId"></p>
+<!--  <p>ID: <input type="text" th:value="${car.id}" name="carId"></p>-->
 
   <button type="submit">Сохранить</button>
 </form>

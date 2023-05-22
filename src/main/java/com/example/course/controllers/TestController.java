@@ -13,22 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TestController {
     @Autowired
     private CarRepo carRepo;
-
-
-
+//    @GetMapping("/")
+//    public String init(Model model){
+//        return "init";
+//    }
     @GetMapping("/")
-    public String init(Model model){
-        return "init";
-    }
-
-    @GetMapping("/home")
     public String home(Model model){
         return "home";
     }
-
-
-
-
-
-
 }

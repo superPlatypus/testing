@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -33,7 +30,7 @@ public class OrderController {
     UserRepo userRepo;
     @Autowired
     CarRepo carRepo;
-//    private CarOrder newOrder = new CarOrder();
+    private CarOrder newOrder = new CarOrder();
 
     @GetMapping
     public String order(Model model){
@@ -50,30 +47,26 @@ public class OrderController {
 
     }
 
-//    @PostMapping("{car}/start")
-//    public String startOrder(@PathVariable Car car){
-////        newOrder = new CarOrder();
-//        newOrder.setStart(LocalDateTime.now());
-//        newOrder.setOrderedCar(car);
-//        return "orderCar";
-//    }
+    @PostMapping("{car}/start")
+    public String startOrder(@PathVariable Car car){
+        newOrder.setStart(LocalDateTime.now());
+        newOrder.setOrderedCar(car);
+        System.out.println(LocalDateTime.now());
+        return "orderCar";
+    }
 
     @PostMapping("{car}/finish")
     public String finishOrder(@PathVariable Car car,
-                              @AuthenticationPrincipal User user,
-                              CarOrder newOrder){
-        newOrder.setStart(LocalDateTime.now());
+                              @AuthenticationPrincipal User user){
         newOrder.setFinish(LocalDateTime.now());
-        newOrder.setOrderedCar(car);
+        System.out.println(LocalDateTime.now());
+//        newOrder.setOrderedCar(car);
         newOrder.setPrice(Duration.between(newOrder.getStart(), newOrder.getFinish()).toMinutes() * car.getPrice());
         user.addOrder(newOrder);
-//        Set<CarOrder> userOrders = user.getOrders();
-//        userOrders.add(newOrder);
-//        user.setOrders(userOrders);
+
         orderRepo.save(newOrder);
         userRepo.save(user);
         System.out.println(Arrays.toString(user.getOrders().toArray()));
-//        orderRepo.save(newOrder);
         return "redirect:/order";
     }
 }
