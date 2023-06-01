@@ -18,12 +18,6 @@ import java.util.Set;
 public class TestingController {
     @Autowired
     CarRepo carRepo;
-//    @GetMapping
-//    @ResponseBody
-//    public String currentUserNameSimple(HttpServletRequest request) {
-//        Principal principal = request.getUserPrincipal();
-//        return principal.getName();
-//    }
 
     @GetMapping("/getAllCars")
     public Iterable<Car> test() {
