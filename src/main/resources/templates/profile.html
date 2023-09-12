@@ -43,8 +43,8 @@
     </thead>
     <tbody>
         <tr th:each="order: ${orders}">
-            <td th:text="${order.id}"></td>
             <td th:text="${order.orderedCar.name}"></td>
+            <td th:text="${order.id}"></td>
             <td th:text="${#temporals.format(order.start, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="${#temporals.format(order.finish, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="${order.price}"></td>
@@ -76,6 +76,7 @@
 <!--</table>-->
 
 <form th:action="@{/logout}" method="post">
+<!--<form th:action="/" method="post">-->
     <input type="submit" value="Sign Out"/>
 </form>
 

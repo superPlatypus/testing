@@ -61,7 +61,8 @@ public class OrderController {
         newOrder.setFinish(LocalDateTime.now());
         System.out.println(LocalDateTime.now());
 //        newOrder.setOrderedCar(car);
-        newOrder.setPrice(Duration.between(newOrder.getStart(), newOrder.getFinish()).toMinutes() * car.getPrice());
+//        newOrder.setPrice(Duration.between(newOrder.getStart(), newOrder.getFinish()).toMinutes() * car.getPrice());
+        newOrder.setPrice(Duration.between(newOrder.getStart(), newOrder.getFinish()).toSeconds() * car.getPrice());
         user.addOrder(newOrder);
 
         orderRepo.save(newOrder);

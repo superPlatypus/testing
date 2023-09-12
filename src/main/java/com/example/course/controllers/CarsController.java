@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/cars")
-@PreAuthorize("hasAuthority('ADMIN')")
+//@PreAuthorize("hasAuthority('ADMIN')")
 public class CarsController {
     @Autowired
     CarRepo carRepo;
@@ -31,7 +31,7 @@ public class CarsController {
     @GetMapping("{car}")
     public String carForm(@PathVariable Car car, Model model){
         model.addAttribute("car", car);
-        return "carEdit";
+        return "carEditt";
 
     }
 
