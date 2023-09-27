@@ -3,6 +3,7 @@ package com.example.course.controllers;
 import com.example.course.entity.Role;
 import com.example.course.entity.User;
 import com.example.course.repository.UserRepo;
+import com.example.course.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ import java.util.stream.Collectors;
 public class UserController {
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    private UserService userSevice;
 
     @GetMapping
     public String userList(Model model){
@@ -40,19 +44,20 @@ public class UserController {
     public String userSave(@RequestParam Map<String, String> form,
                            @RequestParam String username,
                            @RequestParam("userId") User user){
-        user.setUsername(username);
-
-
-        Set<String> roles = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toSet());
-        user.getRoles().clear();
-        for (String key : form.keySet()) {
-            if (roles.contains(key)){
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
-        userRepo.save(user);
+        userSevice.saveUser(user, username, form);
+//        user.setUsername(username);
+//
+//
+//        Set<String> roles = Arrays.stream(Role.values())
+//                .map(Role::name)
+//                .collect(Collectors.toSet());
+//        user.getRoles().clear();
+//        for (String key : form.keySet()) {
+//            if (roles.contains(key)){
+//                user.getRoles().add(Role.valueOf(key));
+//            }
+//        }
+//        userRepo.save(user);
         return "redirect:/user";
     }
 }
